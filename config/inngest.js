@@ -45,10 +45,7 @@ export const syncUserUpdation = inngest.createFunction(
   
       await connectDB();
   
-      await User.updateOne(
-        { _id: id },         
-        { $set: updatedUserData }
-      );
+      await User.findByIdAndUpdate(id, userData);
     }
   );
 
@@ -62,6 +59,6 @@ export const syncUserUpdation = inngest.createFunction(
   
       await connectDB();
   
-      await User.deleteOne({ _id: id });
+      await User.findByIdAndDelete(id);
     }
   );
